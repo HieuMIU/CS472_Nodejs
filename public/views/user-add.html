@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="../static/css/style.css">
+</head>
+<body>
+    <header>
+        <div class="left-header">
+            <a href="/">
+                <img class="logo" src="../static/images/node.js-logo.png" alt="home-page">
+            </a>
+            
+            <p><b>Node js - Express</b></p>
+        </div>
+        <div class="right-header">
+            <ul>
+                <li><a href="/" class="right-header-text" title="Homepage">Homepage</a></li>
+                <li><a href = "/users" class="right-header-text" title="User">User</a></li>
+                <li><a href="/products" class="right-header-text" title="Product">Product</a></li>
+            </ul>  
+        </div>
+    </header>
+    <div class="banner">
+        <p>Add new user</p>
+    </div>
+    <div class="body">     
+        <div class = "left-body">
+            <h2>Add</h2>
+            <form>
+                <p class="fade-p">Username</p>
+                <input type="text" class="input-field" placeholder="Enter email" id ="username" name="username">
+                <p class="fade-p">Password</p>
+                <input type="text" class="input-field" placeholder="Enter password" id="password" name="password">
+                <div class="remember-me">
+                    <input type="checkbox" title="Is Active" id="isActive" name = isActive><label class="fade-p">Is Active</label>
+                </div>
+                <div>
+                    <button class="black-button" type="button" onclick="addUser()">Add</button>
+                </div>         
+            </form>   
+        </div>  
+        <div class="center-body"></div>
+        <div class = "right-body">
+            <h2>Node js - Express</h2>
+            <img class="lesson" src="../static/images/express-1.PNG" alt="express-lesson">
+            <img class="lesson" src="../static/images/express-2.PNG" alt="express-lesson">
+        </div>
+    </div>  
+    <div class="footer">
+        <p class="fade-p">Copyright 2020. All rights reserved.</p>
+    </div>
+    <script> 
+        async function addUser(){
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const isActive = document.getElementById('isActive').checked;
+
+            const data = {
+                username,
+                password,
+                isActive
+            };
+
+            var response = fetch('/users', {
+                method: 'POST',
+                headers: {
+                'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log(data); // Handle the response as needed
+                // Redirect to another page after successful submission
+                window.location.href = '/users'; // Replace '/success' with the desired URL
+            })
+            .catch(error => {
+                window.location.href = '/error'
+            });
+        }
+    </script>
+</body>
+</html>
