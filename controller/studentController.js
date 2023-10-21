@@ -41,9 +41,9 @@ let controller = {
         }
     },
     updateStudent: function(req, res, next){
-        let id = parseInt(req.params.id);
-
-        let updatedStudent = new Student(req.params.id, req.body.name, req.body.program).update();
+        let refId = parseInt(req.params.id);
+        let newId = parseInt(req.body.id);
+        let updatedStudent = new Student(newId, req.body.name, req.body.program).update(refId);
         if(updatedStudent){
             res.status(200).json(updatedStudent);
         } else{

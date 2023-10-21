@@ -26,15 +26,15 @@ class Product {
         }
         return deletedStudent;
     }
-    update() {
-        this.id = parseInt(this.id);
-        let index = students.findIndex(o => o.id === this.id);
-        let updatedStudent;
+    update(refId) {
+        let index = students.findIndex(o => o.id === refId);
+        console.log(index);
         if(index > -1){
             students.splice(index, 1, this);
             return this;
         }
-        return updatedStudent;
+        console.log(students);
+        return this;
     }
     static filterByProgram(searchKey){
         return students.filter(o => o.program.toLowerCase().includes(searchKey.toLowerCase()));
