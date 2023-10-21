@@ -29,12 +29,11 @@ class Product {
     update() {
         this.id = parseInt(this.id);
         let index = students.findIndex(o => o.id === this.id);
-        let updatedStudent;
         if(index > -1){
             students.splice(index, 1, this);
             return this;
         }
-        return updatedStudent;
+        return this;
     }
     static filterByProgram(searchKey){
         return students.filter(o => o.program.toLowerCase().includes(searchKey.toLowerCase()));
