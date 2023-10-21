@@ -1,7 +1,12 @@
 const express = require('express');
 const studentRouter = require('./router/studentRouter');
+const cors = require('cors')
 
 const app = express();
+
+const corsConfig = {origin: "http://127.0.0.1:3000"}
+
+app.use(cors(corsConfig));
 
 app.use(express.json());
 
